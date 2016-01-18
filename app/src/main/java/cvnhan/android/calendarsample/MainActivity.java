@@ -1,9 +1,14 @@
 package cvnhan.android.calendarsample;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import cvnhan.android.calendarsample.piechart.PieChart;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -11,7 +16,22 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_piechart);
+        Resources res = getResources();
+        final PieChart pie = (PieChart) this.findViewById(R.id.Pie);
+        pie.addItem("Agamemnon", 2, res.getColor(R.color.seafoam));
+        pie.addItem("Bocephus", 3.5f, res.getColor(R.color.chartreuse));
+        pie.addItem("Calliope", 2.5f, res.getColor(R.color.emerald));
+        pie.addItem("Daedalus", 3, res.getColor(R.color.bluegrass));
+        pie.addItem("Euripides", 1, res.getColor(R.color.turquoise));
+        pie.addItem("Ganymede", 3, res.getColor(R.color.slate));
+
+        ((Button) findViewById(R.id.Reset)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                pie.setCurrentItem(0);
+            }
+        });
     }
 
     @Override
